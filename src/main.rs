@@ -7,9 +7,9 @@ use std::fs;
 
 fn main() {
 	let args: Vec<String> = env::args().collect();
-	dbg!(&args);
+	// dbg!(&args);
 
-	let _prog_self = &args[0];
+	// let _prog_self = &args[0];
 	let query = &args[1];
 	let file_path = &args[2];
 
