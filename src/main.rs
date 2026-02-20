@@ -10,8 +10,10 @@ fn main() {
 	// dbg!(&args);
 
 	// let _prog_self = &args[0];
-	let query = &args[1];
-	let file_path = &args[2];
+	// let query = &args[1];
+	// let file_path = &args[2];
+
+	let (query, file_path) = parse_config(&args);
 
 	println!("Searching for `{query}` in file `{file_path}`");
 
@@ -22,7 +24,12 @@ fn main() {
 }
 
 
+fn parse_config(args: &[String]) -> (&str, &str) {
+	let query = &args[1];
+	let file_path = &args[2];
 
+	(query, file_path)
+}
 
 
 
