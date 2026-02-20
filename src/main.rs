@@ -9,6 +9,8 @@ use std::{
 	error::Error
 };
 
+use minigrep::search;
+
 fn main() {
 	let args: Vec<String> = env::args().collect();
 	// dbg!(&args);
@@ -24,7 +26,7 @@ fn main() {
 		process::exit(1);
 	});
 
-	println!("Searching for `{}` in file `{}`", config.query, config.file_path);
+	// println!("Searching for `{}` in file `{}`", config.query, config.file_path);
 
 	if let Err(e) = run(config) {
 		println!("Application error: {e}");
@@ -32,20 +34,23 @@ fn main() {
 	}
 }
 
+
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
 	let contents = fs::read_to_string(config.file_path)?;
 	// .expect("Should have been able to read the file");
 
-	println!("With text:\n{contents}");
+	for line in search(&config.query, &contents) {
+		println!("{line}")
+	}
 
 	Ok(())
 }
+
 
 struct Config {
 	query: String,
 	file_path: String,
 }
-
 
 
 impl Config {
