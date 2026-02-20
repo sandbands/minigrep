@@ -2,9 +2,12 @@
 // Rust Book Chapter 12 Project
 // minigrep
 
-use std::env;
-use std::fs;
-use std::process;
+use std::{
+	env,
+	fs,
+	process,
+	error::Error
+};
 
 fn main() {
 	let args: Vec<String> = env::args().collect();
@@ -23,10 +26,19 @@ fn main() {
 
 	println!("Searching for `{}` in file `{}`", config.query, config.file_path);
 
-	let contents = fs::read_to_string(config.file_path)
-		.expect("Should have been able to read the file");
+	if let Err(e) = run(config) {
+		println!("Application error: {e}");
+		process::exit(1);
+	}
+}
+
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
+	let contents = fs::read_to_string(config.file_path)?;
+	// .expect("Should have been able to read the file");
 
 	println!("With text:\n{contents}");
+
+	Ok(())
 }
 
 struct Config {
