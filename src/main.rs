@@ -9,7 +9,7 @@ fn main() {
 	let args: Vec<String> = env::args().collect();
 	// dbg!(&args);
 
-	// let _prog_self = &args[0];
+	// let prog_self = &args[0];
 	// let query = &args[1];
 	// let file_path = &args[2];
 
