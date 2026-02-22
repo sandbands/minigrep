@@ -3,6 +3,8 @@
 
 **minimal grep**: a command line tool written in rust.
 
+**version** 0.1.0
+
 ## Brief
 
 **minimal grep** *or* `minigrep` is a command line tool written in rust.
